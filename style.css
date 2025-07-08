@@ -5,17 +5,23 @@
   padding: 0;
 }
 
-/* Base page styles */
+/* Base page styles - NASA Brand Colors */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f1f1f1;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* NASA's preferred font */
+  background-color: #0B3D91; /* NASA Blue */
+  color: #FFFFFF;
   padding: 20px;
+  line-height: 1.6;
 }
 
 /* Centered container */
 .container {
   max-width: 1200px;
   margin: 0 auto;
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 /* Header */
@@ -23,122 +29,357 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  margin-bottom: 20px;
+  padding: 30px 20px;
+  background: linear-gradient(135deg, #0B3D91 0%, #FC3D21 100%); /* NASA Blue to Red gradient */
+  color: #FFFFFF;
 }
 
 h1 {
-  font-family: Verdana, sans-serif;
-  font-weight: bold;
-  color: #212121;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300; /* NASA uses lighter weight headers */
+  font-size: 2.5rem;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
-/* Logo */
+/* Logo - Responsive sizing */
 .logo {
-  width: 140px;
+  width: clamp(80px, 15vw, 140px); /* Responsive logo size */
+  height: auto;
   margin-right: 15px;
+  flex-shrink: 0; /* Prevent logo from shrinking too much */
 }
 
-/* Date‐picker & button row */
+/* Responsive header adjustments */
+@media (max-width: 480px) {
+  .site-header {
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px 15px;
+  }
+  
+  .logo {
+    margin-right: 0;
+    margin-bottom: 10px;
+    width: clamp(60px, 20vw, 100px);
+  }
+  
+  h1 {
+    font-size: clamp(1.5rem, 5vw, 2rem);
+    letter-spacing: 1px;
+    text-align: center;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .site-header {
+    padding: 25px 20px;
+  }
+  
+  h1 {
+    font-size: clamp(2rem, 4vw, 2.5rem);
+  }
+}
+
+@media (min-width: 769px) {
+  h1 {
+    font-size: clamp(2.5rem, 3vw, 3rem);
+  }
+}
+
+/* Date‐picker & button row - Enhanced responsiveness */
 .filters {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
   justify-content: center;
-  margin-bottom: 20px;
-  padding: 0 20px;
+  margin: 20px;
+  padding: 20px;
+  background-color: #F5F5F5; /* NASA Light Gray */
+  border-radius: 8px;
+}
+
+/* Mobile-first responsive filters */
+@media (max-width: 480px) {
+  .filters {
+    margin: 15px 10px;
+    padding: 15px;
+    gap: 12px;
+  }
 }
 
 /* Inputs and buttons */
 input[type="date"],
 button {
-  font-family: Arial, sans-serif;
-  font-weight: normal;
-  color: #666;
-  padding: 10px 15px;
-  border: 1px solid #ddd;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  color: #333333;
+  padding: 12px 20px;
+  border: 2px solid #0B3D91; /* NASA Blue border */
   border-radius: 4px;
   font-size: 16px;
   line-height: 1.4;
   width: 100%;
+  transition: all 0.3s ease;
+}
+
+input[type="date"]:focus {
+  outline: none;
+  border-color: #FC3D21; /* NASA Red on focus */
+  box-shadow: 0 0 0 3px rgba(252, 61, 33, 0.1);
 }
 
 /* Button specific */
 button {
-  background-color: #d3d3d3;
-  color: black;
+  background: linear-gradient(135deg, #0B3D91 0%, #1E5FB8 100%); /* NASA Blue gradient */
+  color: #FFFFFF;
   cursor: pointer;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: none;
 }
+
 button:hover {
-  background-color: #bfbfbf;
+  background: linear-gradient(135deg, #FC3D21 0%, #FF6B47 100%); /* NASA Red gradient on hover */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(252, 61, 33, 0.3);
 }
 
 /* Stack horizontally on wider screens */
 @media (min-width: 600px) {
   .filters {
     flex-direction: row;
-    padding: 0;
+    margin: 30px 20px;
+    padding: 20px;
   }
   
   input[type="date"],
   button {
     width: auto;
+    flex: 1;
+  }
+  
+  button {
+    max-width: 200px;
   }
 }
 
-/* Gallery flex container */
+/* Gallery flex container - Enhanced responsiveness */
 .gallery {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
-  padding: 20px;
+  gap: clamp(15px, 3vw, 25px); /* Responsive gap */
+  padding: clamp(15px, 4vw, 30px) clamp(10px, 3vw, 20px); /* Responsive padding */
   justify-content: center;
+  background-color: #FFFFFF;
 }
 
-/* Gallery items */
+/* Gallery items - Mobile-first responsive design */
 .gallery-item {
-  flex: 1 1 100%;  /* full width by default */
+  flex: 1 1 100%;  /* full width on mobile */
   min-width: 280px;
-  max-width: 500px;
-  background: white;
-  padding: 10px;
+  max-width: 100%;
+  background: #FFFFFF;
+  padding: 15px;
   border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 15px rgba(11, 61, 145, 0.15); /* NASA Blue shadow */
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  border: 1px solid #E5E5E5;
+  transition: all 0.3s ease;
 }
 
-/* Three columns on wider screens */
+/* Mobile adjustments */
+@media (max-width: 480px) {
+  .gallery {
+    gap: 15px;
+    padding: 15px 10px;
+  }
+  
+  .gallery-item {
+    min-width: 0; /* Allow items to shrink on very small screens */
+    padding: 12px;
+  }
+}
+
+/* Tablet - Two columns */
+@media (min-width: 600px) and (max-width: 999px) {
+  .gallery-item {
+    flex: 1 1 calc(50% - 12px); /* Two columns with gap */
+    max-width: calc(50% - 12px);
+  }
+}
+
+/* Desktop - Three columns */
 @media (min-width: 1000px) {
   .gallery-item {
-    flex: 0 1 31%;
+    flex: 1 1 calc(33.333% - 17px); /* Three columns with gap */
+    max-width: calc(33.333% - 17px);
+  }
+}
+
+/* Large screens - Four columns */
+@media (min-width: 1400px) {
+  .gallery-item {
+    flex: 1 1 calc(25% - 19px); /* Four columns with gap */
+    max-width: calc(25% - 19px);
   }
 }
 
 .gallery-item img {
   width: 100%;
-  height: 200px;
+  height: clamp(150px, 25vw, 200px); /* Responsive image height */
   object-fit: cover;
   border-radius: 4px;
 }
 
-.gallery-item p {
-  margin-top: 10px;
+.gallery-item h3 {
+  margin-top: 15px;
   padding: 5px;
-  font-size: 14px;
+  font-size: clamp(16px, 2.5vw, 18px); /* Responsive title size */
+  color: #0B3D91; /* NASA Blue for titles */
+  font-weight: 600;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  line-height: 1.3;
+}
+
+.gallery-item p {
+  margin-top: 8px;
+  padding: 5px;
+  font-size: clamp(12px, 2vw, 14px); /* Responsive text size */
+  line-height: 1.4;
+  color: #666666;
 }
 
 /* Placeholder content */
 .placeholder {
   flex: 1 1 100%;
   text-align: center;
-  padding: 40px;
-  color: #666;
+  padding: 60px 40px;
+  color: #0B3D91; /* NASA Blue */
 }
 
 .placeholder-icon {
-  font-size: 48px;
+  font-size: 64px;
   margin-bottom: 20px;
+}
+
+.placeholder p {
+  font-size: 18px;
+  font-weight: 300;
+}
+
+/* Modal styles */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.8); /* Black background with transparency */
+}
+
+.modal-content {
+  background-color: #FFFFFF;
+  margin: clamp(2%, 5vh, 5%) auto; /* Responsive margin */
+  padding: clamp(20px, 4vw, 30px); /* Responsive padding */
+  border-radius: 8px;
+  width: clamp(300px, 90vw, 900px); /* Responsive width with min/max */
+  max-width: 95vw; /* Ensure it doesn't exceed viewport */
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 8px 40px rgba(11, 61, 145, 0.3); /* NASA Blue shadow */
+  border: 2px solid #0B3D91; /* NASA Blue border */
+}
+
+.close-button {
+  color: #FC3D21; /* NASA Red */
+  float: right;
+  font-size: clamp(24px, 4vw, 32px); /* Responsive close button size */
+  font-weight: bold;
+  cursor: pointer;
+  position: absolute;
+  top: clamp(15px, 3vw, 20px);
+  right: clamp(15px, 3vw, 25px);
+  z-index: 1001;
+  transition: color 0.3s ease;
+}
+
+.close-button:hover,
+.close-button:focus {
+  color: #0B3D91; /* NASA Blue on hover */
+}
+
+#modalImage {
+  width: 100%;
+  max-height: clamp(300px, 50vh, 500px); /* Responsive modal image height */
+  object-fit: contain;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.modal-info h2 {
+  font-size: clamp(20px, 4vw, 28px); /* Responsive modal title */
+  color: #0B3D91; /* NASA Blue */
+  margin-bottom: 15px;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  line-height: 1.3;
+  padding-right: 40px; /* Space for close button */
+}
+
+.modal-info p {
+  font-size: clamp(14px, 2.5vw, 16px); /* Responsive modal text */
+  line-height: 1.7;
+  color: #333333;
+  margin-bottom: 20px;
+}
+
+#modalDate {
+  font-weight: 600;
+  color: #FC3D21; /* NASA Red for date */
+  font-size: clamp(14px, 2.5vw, 16px);
+}
+
+/* Make gallery items clickable */
+.gallery-item {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.gallery-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(11, 61, 145, 0.25); /* Enhanced NASA Blue shadow on hover */
+  border-color: #FC3D21; /* NASA Red border on hover */
+}
+
+/* Additional responsive enhancements */
+@media (max-width: 320px) {
+  /* Extra small devices */
+  .container {
+    border-radius: 0; /* Remove border radius on very small screens */
+  }
+  
+  .filters {
+    margin: 10px 5px;
+    padding: 10px;
+  }
+  
+  .gallery {
+    padding: 10px 5px;
+  }
+}
+
+@media (min-width: 1600px) {
+  /* Extra large screens */
+  .container {
+    max-width: 1400px;
+  }
 }
